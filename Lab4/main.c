@@ -163,9 +163,9 @@ int print_dir(char* dir, int depth){
     for (int i = 0; i < entry_num; i++) {
         tmp_entry = entries + i;
         if (tmp_entry->d_type == DT_DIR &&			   //should be a dir
-            //tmp_entry->d_name[0] != '.' &&           // will not skip hidden dir
-            strcmp(tmp_entry->d_name, ".") &&          // skip current file
-            strcmp(tmp_entry->d_name, "..") ) {        // skip upper file
+            tmp_entry->d_name[0] != '.' &&           // skip hidden dir
+            strcmp(tmp_entry->d_name, ".") &&          // skip current dir
+            strcmp(tmp_entry->d_name, "..") ) {        // skip upper dir
 
             // construct path
             char *dir_name = (char *)malloc(strlen(dir) + strlen(tmp_entry->d_name) + 2);
